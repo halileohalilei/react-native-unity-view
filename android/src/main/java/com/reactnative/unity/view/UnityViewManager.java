@@ -54,6 +54,9 @@ public class UnityViewManager extends SimpleViewManager<UnityView> implements Li
 
     @Override
     protected UnityView createViewInstance(ThemedReactContext reactContext) {
+        if (!UnityUtils.hasUnityPlayer()) {
+            UnityUtils.createPlayer(context.getCurrentActivity());
+        }
         UnityView view = new UnityView(reactContext, UnityUtils.getPlayer());
         UnityUtils.addUnityEventListener(view);
         return view;
@@ -74,16 +77,16 @@ public class UnityViewManager extends SimpleViewManager<UnityView> implements Li
 
     @Override
     public void onHostResume() {
-        if (!UnityUtils.hasUnityPlayer()) {
-            UnityUtils.createPlayer(context.getCurrentActivity());
-        } else {
+        if (UnityUtils.hasUnityPlayer()) {
             UnityUtils.getPlayer().resume();
         }
     }
 
     @Override
     public void onHostPause() {
-        UnityUtils.getPlayer().pause();
+        if (UnityUtils.hasUnityPlayer()) {
+            UnityUtils.getPlayer().pause();
+        }
     }
 
     @Override
