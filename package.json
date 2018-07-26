@@ -2,11 +2,8 @@
   "name": "react-native-unity-view",
   "version": "1.0.4",
   "description": "",
-  "main": "out/index.js",
-  "typings": "out/index.d.ts",
-  "scripts": {
-    "compile": "node node_modules/typescript/bin/tsc"
-  },
+  "main": "src/index.js",
+  "scripts": {},
   "keywords": [
     "react",
     "native",
